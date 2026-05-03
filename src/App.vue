@@ -267,17 +267,19 @@ async function runMakerom(ciafilePath:string,patchFilePath:string,romFilePath:st
   const ciaFileName = await basename(ciafilePath);
   const ciaFullPath = await join(appCachePath, subFolderName, ciaFileName);
   const commandCtrdecrypt = Command.sidecar("binaries/ctrdecrypt", [ciaFullPath]);
-  await commandCtrdecrypt.execute();
-  console.log(ciaFullPath);
+  const res = await commandCtrdecrypt.execute();
+  console.log("ctrdecrypt");
+  console.log(res.stdout);
   
 
   const ncchfiles = sortNcchFiles(await findFilesIn(subFolderName,".ncch"));
-  // if (ncchfiles.length < 1){
-  //   await message("cia 中未找到 ncch，可能是解压失败", {
-  //   title: "没找到 Ncch",
-  //   kind: "error"});
-  //   return;
-  // }
+  if (ncchfiles.length < 1){
+    await message("cia 中未找到 ncch，可能是解压失败", {
+    title: "没找到 Ncch",
+    kind: "error"});
+    isRunning.value = false;
+    return;
+  }
   console.log(ncchfiles);
 
   const ncch0FilePathOld = `${await join(appCachePath, subFolderName, ncchfiles[0])}`;
