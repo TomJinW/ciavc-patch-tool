@@ -492,7 +492,7 @@ async function showAlert(title:string, msg:string) {
 
 <template>
   <main class="container">
-    <h2>3DS cia VC ROM/联机补丁替换工具 v1.00 Tom_C</h2>
+    <h2>3DS cia VC ROM/联机补丁替换工具 v0.1.0 Tom_C</h2>
 <!-- 
     <div class="row">
       <a href="https://vite.dev" target="_blank">
