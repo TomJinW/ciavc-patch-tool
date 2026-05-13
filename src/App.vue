@@ -232,7 +232,7 @@ async function runMakerom(ciafilePath:string,patchFilePath:string,romFilePath:st
     await copyUserFileToCache(`${subFolderName}/`,ciafilePath);
     console.log("File Copied successfully!");
   } catch (error) {
-    showErrorAlert("复制失败",error);
+    await showErrorAlert("复制失败",error);
     isRunning.value = false;
     return;
   }
@@ -243,7 +243,7 @@ async function runMakerom(ciafilePath:string,patchFilePath:string,romFilePath:st
       await copyUserFileToCache(`${replaceFolderName}/`,patchFilePath);
       console.log("File Copied successfully!");
     } catch (error) {
-      showErrorAlert("复制失败",error);
+      await showErrorAlert("复制失败",error);
       isRunning.value = false;
       return;
     }
@@ -255,7 +255,7 @@ async function runMakerom(ciafilePath:string,patchFilePath:string,romFilePath:st
       await copyUserFileToCache(`${replaceFolderName}/`,romFilePath);
       console.log("File Copied successfully!");
     } catch (error) {
-      showErrorAlert("复制失败",error);
+      await showErrorAlert("复制失败",error);
       isRunning.value = false;
       return;
     }
@@ -384,7 +384,7 @@ async function runMakerom(ciafilePath:string,patchFilePath:string,romFilePath:st
       });
     }
     catch (error){
-      showErrorAlert("修改房间码出错",error);
+      await showErrorAlert("修改房间码出错",error);
     }
   }
 
@@ -420,7 +420,7 @@ async function runMakerom(ciafilePath:string,patchFilePath:string,romFilePath:st
     await copyFile(outputCiaPath,saveFilePath);
   }
   catch (error){
-    showErrorAlert("生成 cia 失败", "可能是打包过程中存在问题\n" + result8.stderr);
+    await showErrorAlert("生成 cia 失败", "可能是打包过程中存在问题\n" + result8.stderr);
     isRunning.value = false;
     return;
   }
